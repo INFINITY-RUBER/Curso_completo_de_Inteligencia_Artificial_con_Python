@@ -10,7 +10,7 @@ import gym
 from gym.spaces import *
 import sys
 
-# Box -> R^n (x1,x2,x3,...,xn), xi [low, high]
+# Box -> R^n (x1,x2,x3,...,xn), xi [low, high] espacion caja
 #gym.spaces.Box(low = -10, high = 10, shape = (2,)) # (x,y), -10<x,y<10
 
 # Discrete -> Números enteros entre 0 y n-1, {0,1,2,3,...,n-1}
@@ -30,9 +30,9 @@ import sys
 #gym.spaces.MultiDiscrete([-10,10],[0,1])
 
 # Tuple -> Producto de espacios simples
-#gym.spaces.Tuple((gym.spaces.Discrete(3), gym.spaces.Discrete(2)))#{0,1,2}x{0,1}
+#gym.spaces.Tuple((gym.spaces.Discrete(3), gym.spaces.Discrete(2))) -->>  {0,1,2}x{0,1}
 
-# prng -> Random Seed
+# prng -> Random Seed >> semillas aleatoras
 
 
 def print_spaces(space):
@@ -51,7 +51,7 @@ if __name__ == "__main__":
     try:
         print("Descripción de las acciones: ", environment.unwrapped.get_action_meanings())
     except AttributeError:
-        pass
+        pass  # pase el error
         
 
 
