@@ -246,6 +246,7 @@ if __name__ == "__main__":
     num_improved_episodes_before_checkpoint = 0
     if agent_params['load_trained_model']:
         try:
+            print()
             agent.load(env_conf['env_name'])
             previous_checkpoint_mean_ep_rew = agent.best_mean_reward
         except FileNotFoundError:
