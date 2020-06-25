@@ -80,21 +80,20 @@ class SwallowQLearner(object):
         reward_batch = np.array(batch_xp.reward)
         next_obs_batch = np.array(batch_xp.next_obs)
         done_batch = np.array(batch_xp.done)
-        
+
         td_target = reward_batch + ~done_batch * \
                     np.tile(self.gamma, len(next_obs_batch)) * \
-                    self.Q(next_obs_batch).detach().max(1)[0].data
-        
+                    self.Q(next_obs_batch).detach().max(1)[0].data.numpy()
+#           ~done_batch : Solo hara la suma si no a terminado
+        td_target = torch.from_numpy(td_target) # convertimos a un tensor para operar
         td_target = td_target.to(self.device)
         action_idx = torch.from_numpy(action_batch).to(self.device)
         td_error = torch.nn.functional.mse_loss(
-                self.Q(obs_batch).gather(1, action_idx.view(-1,1)),
-                td_target.float().unsqueeze(1))
-        
+                    self.Q(obs_batch).gather(1,action_idx.view(-1,1).long()),
+                    td_target.float().unsqueeze(1))        
         self.Q_optimizer.zero_grad()
         td_error.mean().backward()
-        self.Q_optimizer.step()
-        
+        self.Q_optimizer.step()# hago un paso adelante para que la neurona aprenda
         
         
         
