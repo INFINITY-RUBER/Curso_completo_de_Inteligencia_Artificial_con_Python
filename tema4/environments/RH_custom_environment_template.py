@@ -34,3 +34,26 @@ class CustomEnvironment(gym.Env):
             info(dict):
                 Un diccionario con información adicional sobre la acción ejecutada
         """
+        #Implementar los pasos del método step aquí:
+        #   - Calcular la recompensa basada en la acción
+        #   - Calcular la observación siguiente
+        #   - Configurar done a True si el episodio ha terminado y a False en otro caso
+        #   - Opcionalmente, definir los valores a ser persistidos dentro del diccionario info
+        # return(observation, reward, done, info)
+
+    def reset(self):
+        """
+        Reinicia las variables del entorno y devuelve la observación inicial
+        : return : observation
+            observation(object): 
+                observación inicial después de haber configurado un nuevo episodio
+        """
+        # Implementar el método reset aquí
+        # return observation 
+
+    def render(self, mode = 'human', close = False):
+        """
+        : param mode:
+        : return :
+        """
+        return
